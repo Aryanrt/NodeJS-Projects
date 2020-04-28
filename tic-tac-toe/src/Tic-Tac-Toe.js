@@ -52,6 +52,7 @@ class Board extends React.Component {
   }
   newGameButton() {  
   return <button className="newGameButton" onClick={() => this.newGame()}> New Game </button>;
+//return <button onClick={() => this.newGame()}> New Game </button>;
   }
   newGame()
   {
@@ -83,7 +84,7 @@ class Board extends React.Component {
 				
 	
 	if(this.state.winner != null)
-		 var status = this.state.winner +' is the Winner!';
+		 var status = this.state.winner +' Congrats!';
     else
 		 var status = 'Next player: '+( this.state.xNext? 'X': 'O');
 
@@ -107,8 +108,7 @@ class Board extends React.Component {
 		          {this.renderSquare(8)}		        
 			</tr>			
 		</table>
-		
-		<div>{this.state.winner!= null? this.newGameButton(): ''}</div>
+				<div className="newGameDiv">{this.state.winner!= null? this.newGameButton(): ''}</div>		
       </div>
     );
   }
