@@ -28,25 +28,51 @@ class Board extends React.Component {
     this.state = {
      xNext: true,
 	 squares: Array(9).fill(null),
+	 winner: null,
+	 //status
     };
   }
 
   handleClick(i)
   {
 	//square already pressed!!!
-	if( this.state.squares[i]==='X' ||this.state.squares[i]==='O' )
+	if( this.state.squares[i]==='X' ||this.state.squares[i]==='O'  || this.state.winner != null)
 		return;
 		
 	this.state.squares[i] = this.state.xNext ? 'X' : 'O'; 
-	this.setState({squares: this.state.squares, xNext: ! this.state.xNext,});  
+		
+	//another way to set state
+	//this.state.xNext = this.state.xNext?this.state.xNext: !this.state.xNext;
+	this.setState({xNext: ! this.state.xNext});  
   }
+
   renderSquare(i) {
    // return <Square value={i}/>;
   return <Square value={this.state.squares[i]} onClick={() => this.handleClick(i)} />;
   }
 
   render() {
-    const status = 'Next player: '+( this.state.xNext? 'X': 'O');
+	if(this.state.squares[0]==this.state.squares[1] && this.state.squares[0]==this.state.squares[2] && this.state.squares[2] != null)
+		this.state.winner = this.state.squares[0];
+	else if(this.state.squares[3]==this.state.squares[4] && this.state.squares[3]==this.state.squares[5] && this.state.squares[3] != null)
+		this.state.winner = this.state.squares[3];
+	else if(this.state.squares[6]==this.state.squares[7] && this.state.squares[8]==this.state.squares[6] && this.state.squares[6] != null)
+		this.state.winner = this.state.squares[6];
+	else if(this.state.squares[0]==this.state.squares[3] && this.state.squares[0]==this.state.squares[6] && this.state.squares[0] != null)
+		this.state.winner = this.state.squares[0];
+	else if(this.state.squares[1]==this.state.squares[4] && this.state.squares[1]==this.state.squares[7] && this.state.squares[1] != null)
+		this.state.winner = this.state.squares[1];
+	else if(this.state.squares[2]==this.state.squares[5] && this.state.squares[2]==this.state.squares[8] && this.state.squares[2] != null)
+		this.state.winner = this.state.squares[2];
+	else if(this.state.squares[0]==this.state.squares[4] && this.state.squares[0]==this.state.squares[8] && this.state.squares[0] != null)
+		this.state.winner = this.state.squares[0];
+	else if(this.state.squares[2]==this.state.squares[4] && this.state.squares[2]==this.state.squares[6] && this.state.squares[2] != null)
+		this.state.winner = this.state.squares[2];
+				
+	if(this.state.winner != null)
+		 var status = this.state.winner +' is the Winner!';
+    else
+		 var status = 'Next player: '+( this.state.xNext? 'X': 'O');
 
     return (
       <div>
