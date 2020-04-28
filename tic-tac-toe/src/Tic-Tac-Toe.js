@@ -4,10 +4,19 @@ import './Tic-Tac-Toe.css';
 
 
 class Square extends React.Component {
-  render() {
+  
+constructor(props) {
+    super(props);
+    this.state = {
+      value: null,
+    };
+  }
+	render() {
     return (
-      <button className="square">
-        {/* TODO */}
+     /*<button className="square" onClick={function() { alert('click'); }}>  OR */
+      <button className="square" onClick={() => this.setState({value: this.props.value})}>
+
+        {this.state.value}
       </button>
     );
   }
@@ -15,7 +24,7 @@ class Square extends React.Component {
 
 class Board extends React.Component {
   renderSquare(i) {
-    return <Square />;
+    return <Square value={i}/>;
   }
 
   render() {
