@@ -50,6 +50,18 @@ class Board extends React.Component {
    // return <Square value={i}/>;
   return <Square value={this.state.squares[i]} onClick={() => this.handleClick(i)} />;
   }
+  newGameButton() {  
+  return <button className="newGameButton" onClick={() => this.newGame()}> New Game </button>;
+  }
+  newGame()
+  {
+	this.state.xNext = true;
+    for(let i =0; i < 9; i++)
+		this.state.squares[i] = null;
+	this.state.winner = null;
+	this.setState({xNext: ! this.state.xNext, winner: this.state.winner, squares:this.state.squares}); 
+	this.render();
+  }
 
   render() {
 	if(this.state.squares[0]==this.state.squares[1] && this.state.squares[0]==this.state.squares[2] && this.state.squares[2] != null)
@@ -69,6 +81,7 @@ class Board extends React.Component {
 	else if(this.state.squares[2]==this.state.squares[4] && this.state.squares[2]==this.state.squares[6] && this.state.squares[2] != null)
 		this.state.winner = this.state.squares[2];
 				
+	
 	if(this.state.winner != null)
 		 var status = this.state.winner +' is the Winner!';
     else
@@ -94,6 +107,8 @@ class Board extends React.Component {
 		          {this.renderSquare(8)}		        
 			</tr>			
 		</table>
+		
+		<div>{this.state.winner!= null? this.newGameButton(): ''}</div>
       </div>
     );
   }
