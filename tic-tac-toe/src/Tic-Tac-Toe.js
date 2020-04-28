@@ -14,10 +14,9 @@ constructor(props) {
 	render() {
     return (
      /*<button className="square" onClick={function() { alert('click'); }}>  OR */
-      <button className="square" onClick={() => this.setState({value: this.props.value})}>
-
+      <td className="square" onClick={() => this.setState({value: this.props.value})}>
         {this.state.value}
-      </button>
+      </td>
     );
   }
 }
@@ -33,21 +32,30 @@ class Board extends React.Component {
     return (
       <div>
         <div className="status">{status}</div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+		<table className="buttons">
+			<tr>
+		        
+		          {this.renderSquare(0)}
+		          {this.renderSquare(1)}
+		          {this.renderSquare(2)}
+		        
+			</tr>
+			<tr>
+		        
+		          {this.renderSquare(3)}
+		          {this.renderSquare(4)}
+		          {this.renderSquare(5)}
+		        
+			</tr>
+			<tr>
+		        
+		          {this.renderSquare(6)}
+		          {this.renderSquare(7)}
+		          {this.renderSquare(8)}
+		        
+			</tr>
+			
+		</table>
       </div>
     );
   }
