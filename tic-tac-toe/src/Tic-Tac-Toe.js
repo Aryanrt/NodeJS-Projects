@@ -61,7 +61,6 @@ class Board extends React.Component {
 		this.state.squares[i] = null;
 	this.state.winner = null;
 	this.setState({xNext: ! this.state.xNext, winner: this.state.winner, squares:this.state.squares}); 
-	this.render();
   }
 
   render() {
