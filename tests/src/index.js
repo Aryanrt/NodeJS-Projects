@@ -8,7 +8,6 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <React.StrictMode>
     <App />
-    <Greeting isLoggedIn={false} />
   </React.StrictMode>,
   document.getElementById('root')
 );

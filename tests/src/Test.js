@@ -5,16 +5,30 @@ function UserGreeting(props) {
 }
 
 function GuestGreeting(props) {
-  return <h1>Please sign up.</h1>;
+  return <h1>Please sign in!</h1>;
 }
-
-function Greeting(props) {
-  const isLoggedIn = props.isLoggedIn;
-  let b = <SignUpButton parameter={isLoggedIn}  />;
-  if (isLoggedIn) {
-    return <div><UserGreeting />{b}</div>;
-  }
-  return <div><GuestGreeting />{b}</div>;
+class Greeting extends React.Component
+{
+	constructor(props) 
+	{
+	  super(props);
+      this.state = {parameter: false};
+	  this.changeState = this.changeState.bind(this);
+	  
+	}
+	changeState()
+	{
+		this.setState({parameter: ! this.state.parameter});
+	}
+	
+	render() {
+	  //const isLoggedIn = props.isLoggedIn;
+	  let b = <SignUpButton  onClick={() => this.changeState()} parameter={this.state.parameter} />;
+	  if (this.state.parameter) {
+	    return <div><UserGreeting />{b}{this.state.parameter}</div>;
+	  }
+	  return <div><GuestGreeting />{b}{this.state.parameter}</div>;
+	}
 }
 class SignUpButton extends React.Component
 {
@@ -26,29 +40,25 @@ class SignUpButton extends React.Component
 	  this.signIn = this.signIn.bind(this);
 	  this.signOut = this.signOut.bind(this);
 	}
-	foo(props)
-	{
-		if( ! this.state.par)
-			return <button onClick={this.signIn}>Sign Up</button>;
-		return;
-		
-	}
+
 	signIn()
 	{
 		this.setState({par: true});
+		this.props.onClick();
 	}
 	signOut()
 	{
 		this.setState({par: false});
+		this.props.onClick();
 	}
 	render()
 	{
-	 //let x = this.foo();
-	 //return (<div>{x}</div>);
+
 		if( ! this.state.par)
 			return <button onClick={this.signIn}>Sign In</button>;
 		else
 			return <button onClick={this.signOut}>Sign out</button>;
+		
 	}
 }
 
