@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} id="logo" className="App-logo" alt="logo" />
+        <div className="LogoContainer"><img src={logo} id="logo" className="App-logo" /></div>
 		<Game />
         <a
           className="App-link"

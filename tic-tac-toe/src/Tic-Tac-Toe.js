@@ -56,7 +56,14 @@ class Board extends React.Component {
   }
   newGameButton() {  
 	//document.getElementsByClassName("App-logo")[0].className= "App-logo-still";
+	//change the speed of the logo
 	document.getElementById("logo").className= "App-logo-still";
+	/*var logo = document.getElementById("logo");
+	var computedStyle = window.getComputedStyle(logo),
+        marginLeft = computedStyle.getPropertyValue('transform');
+    boxOne.style.transform = marginLeft;
+    boxOne.classList.remove('horizTranslate');  
+	*/
   	return <button className="newGameButton" onClick={() => this.newGame()}> New Game </button>;
 //return <button onClick={() => this.newGame()}> New Game </button>;
   }
@@ -67,6 +74,8 @@ class Board extends React.Component {
 		this.state.squares[i] = null;
 	this.state.winner = null;
 	this.setState({xNext: ! this.state.xNext, winner: this.state.winner, squares:this.state.squares}); 
+	
+	//change the speed of the logo
 	document.getElementsByClassName("App-logo-still")[0].className= "App-logo";
   }
 
