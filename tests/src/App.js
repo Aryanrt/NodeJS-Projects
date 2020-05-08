@@ -19,7 +19,7 @@ function App() {
         >
           Learn React
         </a>
-<Greeting />
+		<Greeting />
       </header>
     </div>
   );

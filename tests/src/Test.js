@@ -45,6 +45,7 @@ class SignUpButton extends React.Component
 	{
 		this.setState({par: true});
 		this.props.onClick();
+		document.getElementsByClassName("App-logo")[0].className= "App-logo-still";
 	}
 	signOut()
 	{

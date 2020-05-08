@@ -1,5 +1,7 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import './Tic-Tac-Toe.css';
+import './App.css';
 
 
 
@@ -29,8 +31,10 @@ class Board extends React.Component {
      xNext: true,
 	 squares: Array(9).fill(null),
 	 winner: null,
+	 gameOver: false,
 	 //status
     };
+	
   }
 
   handleClick(i)
@@ -48,10 +52,12 @@ class Board extends React.Component {
 
   renderSquare(i) {
    // return <Square value={i}/>;
-  return <Square value={this.state.squares[i]} onClick={() => this.handleClick(i)} />;
+  	return <Square value={this.state.squares[i]} onClick={() => this.handleClick(i)} />;
   }
   newGameButton() {  
-  return <button className="newGameButton" onClick={() => this.newGame()}> New Game </button>;
+	//document.getElementsByClassName("App-logo")[0].className= "App-logo-still";
+	document.getElementById("logo").className= "App-logo-still";
+  	return <button className="newGameButton" onClick={() => this.newGame()}> New Game </button>;
 //return <button onClick={() => this.newGame()}> New Game </button>;
   }
   newGame()
@@ -61,6 +67,7 @@ class Board extends React.Component {
 		this.state.squares[i] = null;
 	this.state.winner = null;
 	this.setState({xNext: ! this.state.xNext, winner: this.state.winner, squares:this.state.squares}); 
+	document.getElementsByClassName("App-logo-still")[0].className= "App-logo";
   }
 
   render() {
@@ -81,9 +88,22 @@ class Board extends React.Component {
 	else if(this.state.squares[2]==this.state.squares[4] && this.state.squares[2]==this.state.squares[6] && this.state.squares[2] != null)
 		this.state.winner = this.state.squares[2];
 				
+	for(let i = 0; i < 9; i++)
+	{
+		
+		if(this.state.squares[i] == null )
+		{
+			this.state.gameOver = false;
+			break;
+		}
+		
+		this.state.gameOver = true;
+	}
 	
 	if(this.state.winner != null)
 		 var status = this.state.winner +' Congrats!';
+	else if(this.state.gameOver)
+		var status = 'No Winners!';
     else
 		 var status = 'Next player: '+( this.state.xNext? 'X': 'O');
 
@@ -107,7 +127,7 @@ class Board extends React.Component {
 		          {this.renderSquare(8)}		        
 			</tr>			
 		</table>
-				<div className="newGameDiv">{this.state.winner!= null? this.newGameButton(): ''}</div>		
+				<div className="newGameDiv">{(this.state.winner!= null || this.state.gameOver)? this.newGameButton(): ''}</div>		
       </div>
     );
   }
