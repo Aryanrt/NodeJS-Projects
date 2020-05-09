@@ -32,10 +32,11 @@ class Board extends React.Component {
 	 squares: Array(9).fill(null),
 	 winner: null,
 	 gameOver: false,
-	 status:'Next player: X',
+	 status:'Next : X',
     };
   this.newGame = this.newGame.bind(this)
-  //this.props.onStatusChange('Next player: X');
+  this.handleClick = this.handleClick.bind(this)
+  this.props.onStatusChange('Next : X');
   
 	
   }
@@ -47,10 +48,10 @@ class Board extends React.Component {
 	//square already pressed!!!
 	if( this.state.squares[i]==='X' ||this.state.squares[i]==='O'  || this.state.winner != null)
 		return;
+	
+	this.state.squares[i] = this.state.xNext ? 'X' : 'O'; 	
 		
-	this.state.squares[i] = this.state.xNext ? 'X' : 'O'; 
-		
-	this.setState({xNext: ! this.state.xNext}); 
+	
 
 	if(this.state.squares[0]==this.state.squares[1] && this.state.squares[0]==this.state.squares[2] && this.state.squares[2] != null)
 		this.state.winner = this.state.squares[0];
@@ -80,14 +81,20 @@ class Board extends React.Component {
 		this.state.gameOver = true;
 	}
 	
+	//this.setState({xNext : false});
+	
+	
 	if(this.state.winner != null)
 		 var status = this.state.winner +' Congrats!';
 	else if(this.state.gameOver)
 		var status = 'No Winners!';
     else
-		 var status = 'Next player: '+( this.state.xNext? 'X': 'O');
+		 var status = 'Next : '+( this.state.xNext? 'O': 'X');
 	
+		
+	 	
 	this.setState({status:status});
+	this.state.xNext = ! this.state.xNext;
 	 
 	this.props.onStatusChange(status);
 	
@@ -129,7 +136,7 @@ class Board extends React.Component {
     return (
       <div>
         
-		<div className="status" >{this.state.status}</div>
+		 { /*<div className="status" >{this.state.status}</div> */}
 		<table className="buttons"  >
 			<tr >		        
 		          {this.renderSquare(0)}
