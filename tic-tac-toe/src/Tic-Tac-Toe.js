@@ -44,7 +44,6 @@ class Board extends React.Component {
   handleClick(i)
   {
 
-		/////
 	//square already pressed!!!
 	if( this.state.squares[i]==='X' ||this.state.squares[i]==='O'  || this.state.winner != null)
 		return;
@@ -69,6 +68,8 @@ class Board extends React.Component {
 		this.state.winner = this.state.squares[0];
 	else if(this.state.squares[2]==this.state.squares[4] && this.state.squares[2]==this.state.squares[6] && this.state.squares[2] != null)
 		this.state.winner = this.state.squares[2];
+	
+	//Do we have a winner/game Over?
 	for(let i = 0; i < 9; i++)
 	{
 		
@@ -81,9 +82,6 @@ class Board extends React.Component {
 		this.state.gameOver = true;
 	}
 	
-	//this.setState({xNext : false});
-	
-	
 	if(this.state.winner != null)
 		 var status = this.state.winner +' Congrats!';
 	else if(this.state.gameOver)
@@ -93,9 +91,7 @@ class Board extends React.Component {
 	
 		
 	 	
-	this.setState({status:status});
-	this.state.xNext = ! this.state.xNext;
-	 
+	this.setState({status:status, xNext:!this.state.xNext});	 
 	this.props.onStatusChange(status);
 	
 	
@@ -121,7 +117,7 @@ class Board extends React.Component {
 	
 	//change the speed of the logo
 	document.getElementsByClassName("App-logo-still")[0].className= "App-logo";	 
-	this.props.onStatusChange('Next player X');
+	this.props.onStatusChange('Next X');
   }
 
   render() {
