@@ -1,8 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
-import { Link } from 'react-router-dom';
-import { Redirect } from "react-router-dom";
+import './App.css'; 
 import Game from './Tic-Tac-Toe';
 
 
