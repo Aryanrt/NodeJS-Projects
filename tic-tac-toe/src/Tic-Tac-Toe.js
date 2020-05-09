@@ -32,54 +32,26 @@ class Board extends React.Component {
 	 squares: Array(9).fill(null),
 	 winner: null,
 	 gameOver: false,
-	 //status
+	 status:'Next player: X',
     };
+  this.newGame = this.newGame.bind(this)
+  //this.props.onStatusChange('Next player: X');
+  
 	
   }
 
   handleClick(i)
   {
+
+		/////
 	//square already pressed!!!
 	if( this.state.squares[i]==='X' ||this.state.squares[i]==='O'  || this.state.winner != null)
 		return;
 		
 	this.state.squares[i] = this.state.xNext ? 'X' : 'O'; 
 		
-	//another way to set state
-	//this.state.xNext = this.state.xNext?this.state.xNext: !this.state.xNext;
-	this.setState({xNext: ! this.state.xNext});  
-  }
+	this.setState({xNext: ! this.state.xNext}); 
 
-  renderSquare(i) {
-   // return <Square value={i}/>;
-  	return <Square value={this.state.squares[i]} onClick={() => this.handleClick(i)} />;
-  }
-  newGameButton() {  
-	//document.getElementsByClassName("App-logo")[0].className= "App-logo-still";
-	//change the speed of the logo
-	document.getElementById("logo").className= "App-logo-still";
-	/*var logo = document.getElementById("logo");
-	var computedStyle = window.getComputedStyle(logo),
-        marginLeft = computedStyle.getPropertyValue('transform');
-    boxOne.style.transform = marginLeft;
-    boxOne.classList.remove('horizTranslate');  
-	*/
-  	return <button className="newGameButton" onClick={() => this.newGame()}> New Game </button>;
-//return <button onClick={() => this.newGame()}> New Game </button>;
-  }
-  newGame()
-  {
-	this.state.xNext = true;
-    for(let i =0; i < 9; i++)
-		this.state.squares[i] = null;
-	this.state.winner = null;
-	this.setState({xNext: ! this.state.xNext, winner: this.state.winner, squares:this.state.squares}); 
-	
-	//change the speed of the logo
-	document.getElementsByClassName("App-logo-still")[0].className= "App-logo";
-  }
-
-  render() {
 	if(this.state.squares[0]==this.state.squares[1] && this.state.squares[0]==this.state.squares[2] && this.state.squares[2] != null)
 		this.state.winner = this.state.squares[0];
 	else if(this.state.squares[3]==this.state.squares[4] && this.state.squares[3]==this.state.squares[5] && this.state.squares[3] != null)
@@ -96,7 +68,6 @@ class Board extends React.Component {
 		this.state.winner = this.state.squares[0];
 	else if(this.state.squares[2]==this.state.squares[4] && this.state.squares[2]==this.state.squares[6] && this.state.squares[2] != null)
 		this.state.winner = this.state.squares[2];
-				
 	for(let i = 0; i < 9; i++)
 	{
 		
@@ -115,11 +86,51 @@ class Board extends React.Component {
 		var status = 'No Winners!';
     else
 		 var status = 'Next player: '+( this.state.xNext? 'X': 'O');
+	
+	this.setState({status:status});
+	 
+	this.props.onStatusChange(status);
+	
+	
+  }
+
+  renderSquare(i) {
+   // return <Square value={i}/>;
+  	return <Square value={this.state.squares[i]} onClick={() => this.handleClick(i)} />;
+  }
+  newGameButton() {  
+	document.getElementById("logo").className= "App-logo-still";
+  	return <button className="newGameButton" onClick={() => this.newGame()}> New Game </button>;
+
+  }
+  newGame()
+  {
+	this.state.xNext = true;
+    for(let i =0; i < 9; i++)
+		this.state.squares[i] = null;
+	this.state.winner = null;
+	this.state.gameOver= false;
+	this.setState({xNext: true, winner: this.state.winner, squares:this.state.squares,status:'Next player X'}); 
+	
+	//change the speed of the logo
+	document.getElementsByClassName("App-logo-still")[0].className= "App-logo";	 
+	this.props.onStatusChange('Next player X');
+  }
+
+  render() {
+
+				
+	
+
+	
+	//this.setState({status:status}); 
+	//this.props.onStatusChange(status);
 
     return (
       <div>
-        <div className="status">{status}</div>
-		<table className="buttons">
+        
+		<div className="status" >{this.state.status}</div>
+		<table className="buttons"  >
 			<tr >		        
 		          {this.renderSquare(0)}
 		          {this.renderSquare(1)}
@@ -143,14 +154,28 @@ class Board extends React.Component {
 }
 
 class Game extends React.Component {
+	
+	constructor(props) {
+    super(props);
+    this.state = {
+     status:null,
+	 //status
+    };
+   this.handleStatusChange = this.handleStatusChange.bind(this)
+	
+  }
+  handleStatusChange(data) {
+    this.setState({status: data}); 
+
+  }
   render() {
     return (
       <div className="game">
         <div className="game-board">
-          <Board />
+          <Board onStatusChange={this.handleStatusChange} />
         </div>
         <div className="game-info">
-          <div>{/* status */}</div>
+          <div>{this.state.status}</div>
           <ol>{/* TODO */}</ol>
         </div>
       </div>
