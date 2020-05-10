@@ -102,7 +102,7 @@ class Board extends React.Component {
   	return <Square value={this.state.squares[i]} onClick={() => this.handleClick(i)} />;
   }
   newGameButton() {  
-	document.getElementById("logo").className= "App-logo-still";
+	document.getElementById("logo").className= "App-logo-still"
   	return <button className="newGameButton" onClick={() => this.newGame()}> New Game </button>;
 
   }
@@ -130,27 +130,29 @@ class Board extends React.Component {
 	//this.props.onStatusChange(status);
 
     return (
-      <div>
+      <div >
         
 		 { /*<div className="status" >{this.state.status}</div> */}
-		<table className="buttons"  >
-			<tr >		        
-		          {this.renderSquare(0)}
-		          {this.renderSquare(1)}
-		          {this.renderSquare(2)}		        
-			</tr>
-			<tr>		        
-		          {this.renderSquare(3)}
-		          {this.renderSquare(4)}
-		          {this.renderSquare(5)}		        
-			</tr>
-			<tr>		        
-		          {this.renderSquare(6)}
-		          {this.renderSquare(7)}
-		          {this.renderSquare(8)}		        
-			</tr>			
-		</table>
-				<div className="newGameDiv">{(this.state.winner!= null || this.state.gameOver)? this.newGameButton(): ''}</div>		
+		<div className="newGameDiv">{(this.state.winner!= null || this.state.gameOver)? this.newGameButton(): ''}</div>
+		<div className="buttons">
+			<table>
+				<tr >		        
+			          {this.renderSquare(0)}
+			          {this.renderSquare(1)}
+			          {this.renderSquare(2)}		        
+				</tr>
+				<tr>		        
+			          {this.renderSquare(3)}
+			          {this.renderSquare(4)}
+			          {this.renderSquare(5)}		        
+				</tr>
+				<tr>		        
+			          {this.renderSquare(6)}
+			          {this.renderSquare(7)}
+			          {this.renderSquare(8)}		        
+				</tr>			
+			</table>
+		  </div>		
       </div>
     );
   }
@@ -187,13 +189,14 @@ class Game extends React.Component {
 			  <tr><td>O :</td><td>{this.state.oScore}</td></tr>
 			</table>
           </div>
-          <Board onStatusChange={this.handleStatusChange} />
-        </div>
-        <div className="game-info">
-          <div>{this.state.status}</div>
-          <ol>{/* TODO */}</ol>
-        </div>
+		  <div  className="board">
+          	<Board onStatusChange={this.handleStatusChange} />
+	        <div>
+	          <div className="game-info">{this.state.status}</div>
+	        </div>
+		 </div>
       </div>
+	</div>
     );
   }
 }

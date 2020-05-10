@@ -11,13 +11,14 @@
   
   width: 100px !important;
   height: 50px !important;
-  background-color: white; 
+  background-color: #61dafb; 
   color: black; 
-  border: 3px solid black; 
+  position: relative;
+  left:30%;
 }
-.newGameDiv{
-	min-height:50px;
-	min-width:50px;
+.newGameDiv {
+
+  height: 1vw;
 }
 
 button:active{
@@ -26,23 +27,57 @@ button:active{
 	outline:none;
 	padding:0;
 }
-.score-container{
-	  
+.game-board{
+		
+}
+.board >div{
+  
+  
+  text-align: center;
   display: flex;
 
 }
-.score-table{
-	flex: 1;
+
+.newGameDiv{
+	padding: 70px 0;
+	flex-basis: 40%;
+
+}
+.buttons
+{
+	
+	align-items: center;
+	align-content: center;
+	flex-basis: 60%;
+	
+
+}
+.buttons>table
+{
+	width: 20vw;
+	align-content: center;
+	align-items: center;
+	
+
+}
+
+.score-container{
+
+}
+table.score-table{
+	
+	margin-left:auto; 
+    margin-right:auto;
 	
     
 }
-table{
-table-layout: fixed ;
-	
-}
+
 td{
 	width: 15% ;
-	color:red;
 	
+}
+.game-info{
+	width: 100vw;
+	text-align: center;
 }
 
