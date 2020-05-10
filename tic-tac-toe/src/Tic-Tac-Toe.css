@@ -26,5 +26,19 @@ button:active{
 	outline:none;
 	padding:0;
 }
+.score-container{
+	  
+  display: flex;
 
+}
+.score-table{
+	flex: Auto;
+	position: relative; 
+    left: 5%;
+    right: 10%;
+}
+td{
+	color:red;
+	
+}
 

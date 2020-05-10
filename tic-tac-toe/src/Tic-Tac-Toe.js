@@ -175,6 +175,12 @@ class Game extends React.Component {
     return (
       <div className="game">
         <div className="game-board">
+		  <div className="score-container">
+			<table className="score-table">
+  			  <tr><td>X:</td><td>O</td></tr>
+			  <tr><td>O:</td><td>O</td></tr>
+			</table>
+          </div>
           <Board onStatusChange={this.handleStatusChange} />
         </div>
         <div className="game-info">
