@@ -32,12 +32,16 @@ button:active{
 
 }
 .score-table{
-	flex: Auto;
-	position: relative; 
-    left: 5%;
-    right: 10%;
+	flex: 1;
+	
+    
+}
+table{
+table-layout: fixed ;
+	
 }
 td{
+	width: 15% ;
 	color:red;
 	
 }

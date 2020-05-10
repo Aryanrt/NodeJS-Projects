@@ -162,6 +162,8 @@ class Game extends React.Component {
     super(props);
     this.state = {
      status:null,
+	 xScore:0,
+     oScore:0,
 	 //status
     };
    this.handleStatusChange = this.handleStatusChange.bind(this)
@@ -169,6 +171,10 @@ class Game extends React.Component {
   }
   handleStatusChange(data) {
     this.setState({status: data}); 
+	if(data.includes("X Congrats"))
+		this.setState({xScore: this.state.xScore+1});
+	else if(data.includes("O Congrats"))
+		this.setState({oScore: this.state.oScore+1});
 
   }
   render() {
@@ -177,8 +183,8 @@ class Game extends React.Component {
         <div className="game-board">
 		  <div className="score-container">
 			<table className="score-table">
-  			  <tr><td>X:</td><td>O</td></tr>
-			  <tr><td>O:</td><td>O</td></tr>
+  			  <tr><td>X :</td><td>{this.state.xScore}</td></tr>
+			  <tr><td>O :</td><td>{this.state.oScore}</td></tr>
 			</table>
           </div>
           <Board onStatusChange={this.handleStatusChange} />
