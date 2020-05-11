@@ -158,6 +158,22 @@ class Board extends React.Component {
   }
 }
 
+class GameInfo extends React.Component {
+	
+	constructor(props) {
+    super(props);
+    this.state = {
+     status:this.props.status,
+    };
+   /*this.handleStatusChange = this.handleStatusChange.bind(this)*/
+	
+  }
+
+  render(){
+	return(<div>{this.props.status}</div>);
+  }
+}
+
 class Game extends React.Component {
 	
 	constructor(props) {
@@ -191,9 +207,10 @@ class Game extends React.Component {
           </div>
 		  <div  className="board">
           	<Board onStatusChange={this.handleStatusChange} />
-	        <div>
-	          <div className="game-info">{this.state.status}</div>
-	        </div>
+	        <div className="game-info">
+				<GameInfo  status={this.state.status} />
+			</div>
+
 		 </div>
       </div>
 	</div>
