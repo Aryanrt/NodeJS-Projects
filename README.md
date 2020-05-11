@@ -1,4 +1,4 @@
-﻿### Depolyed at https://aryan-react-tic-tac-toe.herokuapp.com/
+﻿### Depolyed at https://aryan-react.herokuapp.com/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
