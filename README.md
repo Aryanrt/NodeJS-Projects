@@ -1,7 +1,7 @@
 ﻿### Depolyed at https://aryan-react.herokuapp.com/
 
 ##  To Run the Protractor-Jasmine-Selenium tests, change directory to /tic-tac-toe/protractor-tests and run:
-### protractor conf.js
+## protractor conf.js
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
